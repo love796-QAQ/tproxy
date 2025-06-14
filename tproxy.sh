@@ -9,8 +9,8 @@ echo "🔧 设置 IPv4 策略路由..."
 ip rule list | grep -q "fwmark 0x1 lookup 100" || ip rule add fwmark 1 table 100
 ip route show table 100 | grep -q "local 0.0.0.0/0 dev lo" || ip route add local 0.0.0.0/0 dev lo table 100
 
-echo "🔧 添加静态路由：192.168.20.0/24 → 192.168.10.2"
-ip route show | grep -q "192.168.20.0/24 via 192.168.10.2" || ip route add 192.168.20.0/24 via 192.168.10.2
+echo "🔧 添加静态路由：192.168.0.0/24 → 192.168.2.2"
+ip route show | grep -q "192.168.0.0/24 via 192.168.2.2" || ip route add 192.168.0.0/24 via 192.168.2.2
 
 echo "🔧 设置 IPv6 策略路由..."
 ip -6 rule list | grep -q "fwmark 0x1 lookup 106" || ip -6 rule add fwmark 1 table 106

@@ -19,6 +19,9 @@ ip -6 route show table 106 | grep -q "local ::/0 dev lo" || ip -6 route add loca
 # 加载 nftables 规则
 NFT_FILE="/etc/sing-box-nft.conf"
 
+echo "📦 检查并创建 nftables 表 sing-box..."
+nft list table inet sing-box >/dev/null 2>&1 || nft add table inet sing-box
+
 if [ ! -f "$NFT_FILE" ]; then
     echo "❌ 找不到 nftables 配置文件: $NFT_FILE"
     exit 1
